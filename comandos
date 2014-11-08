@@ -1,0 +1,66 @@
+cd FuzzyGateway
+ant clean run
+---------------------------------------------------
+virtualenv env_fuzzyapp
+source env_fuzzyapp/bin/activate
+pip install -r requirements.txt
+python manage.py shell
+
+#################################################
+from fuzzyapp.database import fuzzyQuery, fuzzyStatement
+result = fuzzyQuery("SELECT * FROM pokemon", columns={"region": {"type": "string"}})
+for i in result: print i["region"]
+
+from fuzzyapp.database import fuzzyQuery, fuzzyStatement
+result = fuzzyQuery("SELECT * FROM pokemon", columns={"color": {"type": "string"}})
+for i in result: print i["color"]
+#################################################
+from fuzzyapp.pokemonModel import Pokemon
+result = Pokemon.objects.all()
+for i in result: print i
+#################################################
+Calcular los atributos difusos de cada materia:
+
+  $ python manage.py updatefuzzy
+---------------------------------------------------
+Base de datos de prueba
+
+Utilizamos la base de datos de encuesta de opinión estudiantil. De ella tomamos las siguientes
+tablas, las cuales modificamos como sea para que cargaran en el traductor:
+
+- asignatura
+- unidad
+- unidad_asignatura
+- historial
+- respuesta
+- profesor_encuesta
+
+Estas tablas la colocamos en un schema denominado 'opinion', la cual se debe hacer a mano en el
+cliente de Postgres, pues JSqlParser no entiende 'CREATE SCHEMA' AFAIK.
+
+- CREATE SCHEMA opinion
+
+Luego creen la tabla para almacenar los atributos difusos adicionales para las materias:
+
+CREATE TABLE asignatura_fuzzy (codigo text NOT NULL, calificacion fuzzyint NOT NULL, preparacion fuzzyint NOT NULL, dificultad fuzzyint NOT NULL, stale boolean NOT NULL);
+
+Pueden mentalmente ignorar el campo 'stale', pero asegúrense de colocarlo.
+
+Luego pueden cargar los datos utilizando los scripts de carga de EOE. Un feature interesante es
+que el traductor lee las cosas desde entrada estándar, así que pueden hacer lo siguiente para
+cargar las cosas rápidamente:
+
+- Borren todo lo que esté en el header del archivo, de forma que la primera línea sea un INSERT.
+- Coloquen como primera línea 'USE opinion;'
+- Asegúrense que la última línea del archivo sea una línea en blanco. Esto capaz no hace falta,
+  pero porsia.
+- Carguen el script haciendo:
+
+    $ java -jar FuzzyDB.jar < script.sql
+
+El '<' le dice a bash que sustituya la entrada estándar por el archivo dado. Entonces lo que va
+a pasar es que bash va a pasar todo el script al traductor y éste lo va a separar por los ';' y
+saltos de línea y ejecutará cada consulta individualmente. Sin tiene más experiencia en bash podrían
+encadenar varios archivos y cargar todo con un solo comando.
+WARNING: asegúrense que el archivo tenga puros caracteres UTF-8 válidos, o Java revienta ungracefully.
+

@@ -1,0 +1,7 @@
+*.class
+*.pyc
+
+/FuzzyGateway/nbproject/private/
+/FuzzyGateway/build/
+/FuzzyGateway/dist/
+
