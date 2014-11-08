@@ -1,6 +1,6 @@
-cd /FuzzyDB
-java -jar FuzzyDB.jar < create_script_pokemon.sql
-java -jar FuzzyDB.jar < load_pokemon.sql
+cd /FuzzyDB                                        # solo hace falta la primera vez
+java -jar FuzzyDB.jar < create_script_pokemon.sql  # solo hace falta la primera vez
+java -jar FuzzyDB.jar < load_pokemon.sql           # solo hace falta la primera vez
 --------------------------------------------------
 cd ../fuzzydoDB-webApp
 --------------------------------------------------
@@ -10,10 +10,13 @@ ant clean run
 Abrir otro terminal !
 ---------------------------------------------------
 cd ../fuzzysite
-virtualenv env_fuzzyapp
+virtualenv env_fuzzyapp                           # solo hace falta la primera vez
 source env_fuzzyapp/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt                   # solo hace falta la primera vez
+python manage.py migrate                          # solo hace falta la primera vez
 python manage.py runserver
+
+Abrir en un explorador: http://127.0.0.1:8000/fuzzyapp/
 
 Listo !
 
