@@ -10,7 +10,7 @@ from django.conf import settings
 # ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 #                   Clases para representar tipos difusos                       #
 # ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
+'''
 class FuzzyValue(object):
   """ 
   Representa un valor difuso.
@@ -63,7 +63,7 @@ class FuzzyTrapezoid(FuzzyValue):
   
   def __unicode__(self):
     return str(list(self.values))
-
+'''
 # ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 #                     API para consultar la base de datos                       #
 # ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
@@ -119,8 +119,9 @@ def fuzzyQuery(query, columns={}):
   res = settings.FUZZYDB.execute(query).result
   while res.next():
     # Build row
-    yield { cname: fetch_column(res, cname, **params) for cname, params in columns.items() }
-    
+    yield { cname: res.getString(cname) for cname in columns }
+    #yield { cname: fetch_column(res, cname, **params) for cname, params in columns.items() }
+'''    
 def fetch_column(result_set, cname, type, **kwargs):
   """
   Recibe un ResultSet (de Java JDBC), un nombre de columna, un tipo
@@ -140,6 +141,7 @@ c_conversions = {
   "array"   : lambda x, y, **kwargs: convert_array(x.getArray(y), **kwargs),
   "default" : lambda x, y, **kwargs: x.getObject(y).toString(),
 }
+
 
 def convert_array(array_obj, subtype_converter):
   res = array_obj.getResultSet()
@@ -181,3 +183,4 @@ def convert_fuzzy(string, subtype_converter):
     return FuzzyExtension(zip(odd, value))
   else:
     return FuzzyTrapezoid(zip(odd, value))
+'''

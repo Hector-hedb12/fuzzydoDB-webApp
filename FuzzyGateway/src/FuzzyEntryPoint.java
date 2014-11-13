@@ -8,7 +8,7 @@ public class FuzzyEntryPoint {
 
     public FuzzyEntryPoint() throws SQLException {
       connector = new Connector("127.0.0.1", "fuzzy", "fuzzy", "fuzzy");
-      connector.setLibraryMode(true);
+      connector.setLibraryMode(false);
     }
 
     public Connector getConnector() {

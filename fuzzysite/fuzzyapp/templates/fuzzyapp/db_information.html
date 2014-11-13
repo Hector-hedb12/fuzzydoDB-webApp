@@ -55,14 +55,29 @@
 
     <div class="container theme-showcase" role="main">
     
-        <div class="jumbotron">
+        <div class="well">
         
           <div class="page-header">
             <h1>{{db_name}} database</h1>
           </div>
           
-          <p>pokemon is a small database based on the famous videogame bearing the same name. pokemon (the DB) contains only one table (also named pokemon) with the following attributes: 'codigo' (displayed as 'Codigo') to represent the pokemon pokedex number, 'nombre' (displayed as 'Nombre') to indicate the pokemon name, 'tipo_1' and 'tipo_2' (displayed jointly as 'Tipos) respectively specify the primary and secondary type categories of the pokemon (the last one in the case of dealing with dual-type pokemons), 'gh_1' and 'gh_2' (displayed jointly under 'Grupos) for designating egg groups ---categories that determine which pokemons are able to interbreed---, 'poder' (displayed as 'Poder') to indicate the pokemon power (four numbers that denote attack, special attack, defense and special defense), 'region' (displayed as 'Region') specifies the region in which the pokemon was first seen, 'ratio' (displayed as 'Ratio') represents how easy or hard it is to capture a pokemon (depending on which of the 4 poke balls is being used) and 'color' (displayed as 'Color') specifies the pokemon's "primary" color.</p>
-          <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more »</a></p>
+          <p>pokemon is a small database based on the famous videogame bearing 
+             the same name. pokemon (the DB) contains only one table (also named
+             pokemon) with the following attributes: 'codigo' (displayed as 
+             'Codigo') to represent the pokemon pokedex number, 'nombre' 
+             (displayed as 'Nombre') to indicate the pokemon name, 'tipo_1' and 
+             'tipo_2' (displayed jointly as 'Tipos) respectively specify the 
+             primary and secondary type categories of the pokemon (the last one 
+             in the case of dealing with dual-type pokemons), 'gh_1' and 'gh_2' 
+             (displayed jointly under 'Grupos) for designating egg groups 
+             ---categories that determine which pokemons are able to interbreed---, 
+             'poder' (displayed as 'Poder') to indicate the pokemon power (four 
+             numbers that denote attack, special attack, defense and special 
+             defense), 'region' (displayed as 'Region') specifies the region in 
+             which the pokemon was first seen, 'ratio' (displayed as 'Ratio') 
+             represents how easy or hard it is to capture a pokemon (depending 
+             on which of the 4 poke balls is being used) and 'color' (displayed 
+             as 'Color') specifies the pokemon's "primary" color.</p>
         </div>       
         
         <table class="pure-table">
@@ -76,22 +91,24 @@
                     <th>Region</th>
                     <th>Ratio</th>
                     <th>Color</th>
+                    <th>Color Percibido</th>
                 </tr>
             </thead>
             
             <tbody>
                 {% for object in object_sublist %}
                     <tr class="{% cycle 'pure-table-odd' '' %}">
-                        <td>{{ object.codigo }}  </td>
-                        <td>{{ object.nombre }}  </td>
-                        <td>{{ object.tipo_1 }}  <br/>
-                            {{ object.tipo_2 }}  </td>
-                        <td>{{ object.gh_1   }}  <br/>
-                            {{ object.gh_2   }}  </td>
-                        <td>{{ object.poder  }}  </td>
-                        <td>{{ object.region }}  </td>
-                        <td>{{ object.ratio  }}  </td>
-                        <td>{{ object.color  }}  </td>
+                        <td>{{ object.codigo           }}  </td>
+                        <td>{{ object.nombre           }}  </td>
+                        <td>{{ object.tipo_1           }}  <br/>
+                            {{ object.tipo_2           }}  </td>
+                        <td>{{ object.gh_1             }}  <br/>
+                            {{ object.gh_2             }}  </td>
+                        <td>{{ object.poder            }}  </td>
+                        <td>{{ object.region           }}  </td>
+                        <td>{{ object.ratio            }}  </td>
+                        <td>{{ object.color            }}  </td>
+                        <td>{{ object.color_percibido  }}  </td>
                     </tr>
                     {% empty %}
                     <tr>

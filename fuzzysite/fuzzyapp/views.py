@@ -15,7 +15,7 @@ def db_information(request, db_name):
     object_list = list( Pokemon.objects.all() )
   else: raise Http404
   
-  paginator = Paginator(object_list, 20)
+  paginator = Paginator(object_list, 10)
   page = request.GET.get('page')
   
   try: 
