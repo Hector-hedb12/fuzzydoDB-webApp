@@ -12,6 +12,7 @@ Abrir otro terminal !
 cd ../fuzzysite
 virtualenv env_fuzzyapp                           # solo hace falta la primera vez
 source env_fuzzyapp/bin/activate
+sudo apt-get install libpq-dev                    # solo hace falta la primera vez
 pip install -r requirements.txt                   # solo hace falta la primera vez
 python manage.py migrate                          # solo hace falta la primera vez
 python manage.py runserver

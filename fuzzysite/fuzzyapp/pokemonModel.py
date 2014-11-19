@@ -6,10 +6,16 @@ from fuzzyapp.database import fuzzyQuery
 # ### ### ### ### ### ### ### ### ### ### ### ### ###
 class PokemonQuerySet():
   
-  def __init__(self):
+  
+
+
+  
+  
+  def __init__(self, st = "SELECT * FROM pokemon"):
+    self.strsql = st
     self.conditions = []
     self.order_columns = []
-  
+    
     """
     Agrega una condicion para filtrar los pokemones en la base de datos
     Cada argumento que se le pase representa una condicion.
@@ -64,7 +70,10 @@ class PokemonQuerySet():
   
   """ Construye la sentencia SQL necesaria para buscar todos los elementos """
   def _get_sql_query(self):
-    sql = ( "SELECT * FROM pokemon")
+    sql = (self.strsql)
+    
+    
+    """
     # Agregar condiciones WHERE, si las hay
     if len(self.conditions) > 0:
       sql += " WHERE "
@@ -74,7 +83,7 @@ class PokemonQuerySet():
     if len(self.order_columns) > 0:
       sql += " ORDER BY "
       sql += ','.join(map(lambda (col, dir): col + " " + dir, self.order_columns))
-    
+    """
     query_columns = ["codigo", "nombre","tipo_1","tipo_2", "gh_1", "gh_2",
                      "poder_human_readable", "region", "ratio_human_readable",
                      "color", "color_percibido_human_readable"]
@@ -115,6 +124,9 @@ class PokemonManager():
     def all(self):
         return PokemonQuerySet()
     
+    def allq(self, st):
+        return PokemonQuerySet(st)
+    
     """ Devuelve un QuerySet con todos los pokemones, filtrando segun kwargs"""
     def get(self, **kwargs):
         return PokemonQuerySet().filter(**kwargs)
@@ -138,6 +150,22 @@ class PokemonManager():
 # ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 class Pokemon(object):
+  
+  att_name = ["codigo", "nombre", "tipo_1", "gh_1","region", "color_percibido"]
+  att_list = ["Codigo","Nombre","Tipo", "Grupo", "Region","Color"];
+  att_type = [0,0,1,1,0,1]; # 0->normal 1->t3o5
+  
+  table_names = ["Tipo Pokemon Tipo 3", "Grupo Pokemon Tipo 3", "Color Pokemon Tipo 5"];
+  
+  
+  l1 = ["Tipo hada", "Tipo dragon", "Tipo lucha", "Tipo siniestro", "Tipo psiquico", "Tipo volador", "Tipo hielo", "Tipo normal", "Tipo bicho", "Tipo veneno", "Tipo acero", "Tipo fantasma", "Tipo planta", "Tipo agua", "Tipo fuego", "Tipo electrico", "Tipo roca", "Tipo tierra"]
+  l2 = ["Hada", "Planta", "Monstruo", "Humanoide", "Mineral", "Agua 2", "Agua 3", "Agua 1", "Ninguno", "Volador", "Ditto", "Bicho", "Campo", "Dragon", "Amorfo"]
+  l3 = ["Amarillo", "Rojo", "Gris", "Blanco", "Rosa", "Morado", "Marron", "Azul", "Verde", "Negro"];
+  listsn0 = [l1,l2,l3]
+  idn0 = [2,3,5]
+  att_esp = [[],[],l1,l2,[],l3]
+  
+  
   
   objects = PokemonManager()
   

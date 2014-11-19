@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fuzzyapp/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'fuzzyapp/css/bootstrap-theme.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'fuzzyapp/css/theme.css' %}" />
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'fuzzyapp/css/lists.css' %}" />
     <!--
     <link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="http://getbootstrap.com/examples/starter-template/starter-template.css" />
@@ -25,6 +25,88 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    
+    <script src="{% static 'fuzzyapp/js/lists.js' %}"></script>
+    <script>
+    
+      /*
+       * Functions for settings normal elements
+       */
+      function fb(elem){
+        id = elem.id.charAt(1);
+        if(elem.className == "but2"){
+          elem.className = "but1";
+          elem.innerHTML = "DESC";
+          document.getElementById("hid"+id).value = '1';
+        }else{
+          elem.className = "but2";
+          elem.innerHTML = "ASC";
+          document.getElementById("hid"+id).value = '0';
+        }
+      }
+      /*
+       * Function for setting elements type 3 or 5
+       */
+      function seltf(elem){
+        id = elem.id.charAt(4);
+        document.getElementById("hid"+id).value = (elem.options[elem.selectedIndex].value); //String.fromCharCode
+      }
+      
+      
+      function itc(k){
+        return String.fromCharCode(parseInt(k)+97)
+      }
+      
+      /*
+       * Function for show or hide tables for sorting
+       */
+      function sh_st5(){
+      
+      {% for id,no,li in starting_list %}
+	      if(box1_contain('{{id}}')){
+		      document.getElementById("dit{{id}}").style.display = "block";  //.className = "divshow";
+	      }else{
+		      document.getElementById("dit{{id}}").style.display = "none";//className = "divhidden";
+	      }
+	    {% endfor %}
+      }
+      
+      function saveDragDropNodes(){
+	      var saveString = "";
+	      var uls = dragDropTopContainer.getElementsByTagName('UL');
+	      for(var no=0;no<uls.length;no++){	// LOoping through all <ul>
+		      if(uls[no].id != 'box1') continue;
+		      var lis = uls[no].getElementsByTagName('LI');
+		      for(var no2=0;no2<lis.length;no2++){
+			      saveString = saveString + itc(lis[no2].id);
+		      }
+	      }
+	      
+	      
+	      {% for a, t in att_list %}
+		    
+
+		    saveString += itc(document.getElementById('hid{{forloop.counter0}}').value);
+			    
+	      {% endfor %}
+	      
+	      
+	      document.getElementById('query').value = saveString;
+	      document.getElementById('qform').submit();
+	      
+	      /*var str = "";
+	      if(box1_contain('node2')){
+		      str = "hola";
+	      }
+	
+	      document.getElementById('saveContent').innerHTML = '<h1>'+str+'Ready to save these nodes:</h1> ' + saveString.replace(/;/g,';<br>') + '<p>Format: ID of ul |(pipe) ID of li;(semicolon)</p><p>You can put these values into a hidden form fields, post it to the server and explode the submitted value there</p>';
+	      sh_st5();*/
+      }
+
+      
+      
+    </script>
   </head>
 
   <body role="document">
@@ -52,7 +134,11 @@
         
       </div>
     </nav>
-
+    
+    <div class="container theme-showcase" role="main">
+    {{querystr}}
+    </div>
+    
     <div class="container theme-showcase" role="main">
     
         <div class="well">
@@ -80,6 +166,80 @@
              as 'Color') specifies the pokemon's "primary" color.</p>
         </div>       
         
+        
+<div id="sortingdiv">
+
+<div id="dragDropContainer">
+	<div id="topBar"></div>
+	<div id="listOfItems">
+		<div>
+			<p>Available columns </p>
+		    <ul id="allItems">
+		{% for a, t in att_list %}
+			<li id="{{forloop.counter0}}" class="lic{{t}}">{{a}} 
+			{% if t == 0 %}
+			<button  id="b{{forloop.counter0}}" class="but1" onmousedown="fb(this);">ASC</button>
+			{% endif %}
+			
+			</li>
+		{% endfor %} 
+		</ul>
+		</div>
+	</div>
+	<div id="mainContainer">
+		<!-- ONE <UL> for each "room" -->
+		<div>
+			<p>Sort Columns </p>
+			<ul id="box1">
+				
+			</ul>
+		</div>
+		
+		<div id="divsortt5" >
+		
+		{% for id,no,li in starting_list %}
+		<div id="dit{{id}}" class="divhidden">
+		   
+			<p>{{no}}</p>
+			   <select id="selt{{id}}" onchange="seltf(this)">
+			   {% for obj in li %}
+		        <option value="{{forloop.counter0}}" {% if forloop.first %}selected="selected"{% endif %}>{{obj}}</option>
+		     {% endfor %}
+		     </select>
+		</div>
+		{% endfor %} 
+		
+		</div>
+		
+	</div>
+	
+	
+</div>
+	
+
+
+<div id="footer">
+  <form action="" method="get" id="qform">
+	  <input type="hidden" name="query" id="query" value="{{query}}">
+	  <input type="hidden" name="page" value="{{page}}">
+	  </form>
+	<form action="aPage.html" method="post">
+	  
+	  {% for a, t in att_list %}
+	    <input type="hidden" name="hid{{forloop.counter0}}" id="hid{{forloop.counter0}}" value="0">
+		{% endfor %} 
+	  
+	  <input type="button" onclick="saveDragDropNodes()" value="Save"></form>
+</div>
+
+
+<ul id="dragContent"></ul>
+<div id="dragDropIndicator"><img src="images/insert.gif"></div>
+
+</div> 
+        <a name="result"></a>
+        
+        
         <table class="pure-table">
             <thead>
                 <tr>
@@ -87,10 +247,9 @@
                     <th>Nombre</th>
                     <th>Tipos</th>
                     <th>Grupos</th>
-                    <th>Poder</th>
+                    
                     <th>Region</th>
-                    <th>Ratio</th>
-                    <th>Color</th>
+                    
                     <th>Color Percibido</th>
                 </tr>
             </thead>
@@ -100,14 +259,9 @@
                     <tr class="{% cycle 'pure-table-odd' '' %}">
                         <td>{{ object.codigo           }}  </td>
                         <td>{{ object.nombre           }}  </td>
-                        <td>{{ object.tipo_1           }}  <br/>
-                            {{ object.tipo_2           }}  </td>
-                        <td>{{ object.gh_1             }}  <br/>
-                            {{ object.gh_2             }}  </td>
-                        <td>{{ object.poder            }}  </td>
+                        <td>{{ object.tipo_1           }}  </td>
+                        <td>{{ object.gh_1             }}  </td>
                         <td>{{ object.region           }}  </td>
-                        <td>{{ object.ratio            }}  </td>
-                        <td>{{ object.color            }}  </td>
                         <td>{{ object.color_percibido  }}  </td>
                     </tr>
                     {% empty %}
@@ -122,13 +276,13 @@
         <nav>
           <ul class="pager">
                 {% if object_sublist.has_previous %}
-                    <li><a href="?page={{ object_sublist.previous_page_number }}">&larr; Previous</a></li>
+                    <li><a href="?query={{query}}&page={{ object_sublist.previous_page_number }}">&larr; Previous</a></li>
                 {% endif %}
                 
                 <li><a href="#">Page {{ object_sublist.number }} of {{ object_sublist.paginator.num_pages }}.</a></li>
             
                 {% if object_sublist.has_next %}
-                    <li><a href="?page={{ object_sublist.next_page_number }}">Next &rarr;</a></li>
+                    <li><a href="?query={{query}}&page={{ object_sublist.next_page_number }}">Next &rarr;</a></li>
                 {% endif %}
           </ul>
         </nav>

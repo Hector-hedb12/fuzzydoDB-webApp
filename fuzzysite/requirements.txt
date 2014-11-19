@@ -2,4 +2,4 @@ Django==1.7
 argparse==1.2.1
 py4j==0.8.1
 wsgiref==0.1.2
-python-psycopg2==2.5.4
+psycopg2==2.5.4
