@@ -9,7 +9,6 @@ def index(request):
   db_list = ['pokemon'] # Deberia ser el resultado de una consulta a BD
   context = {'db_list': db_list}
   
-  
   return render(request, 'fuzzyapp/index.html', context)
 
 def db_information(request, db_name):
@@ -36,7 +35,7 @@ def db_information(request, db_name):
     object_list = list( Pokemon.objects.allq(querystr) )
   else: raise Http404
   
-  paginator = Paginator(object_list, 10)
+  paginator = Paginator(object_list, 15)
   
   
   try: 

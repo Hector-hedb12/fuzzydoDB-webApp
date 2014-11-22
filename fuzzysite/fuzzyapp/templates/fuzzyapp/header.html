@@ -1,0 +1,28 @@
+
+{# without load static, static tag doesnt work!! #}
+{% load static %}
+    
+
+<div class="container">
+  
+  
+  <div class="masthead ">
+  
+  <img src="{% static 'fuzzyapp/images/logo3.png' %}" style="margin:30px; margin-top:30px;" />
+  
+  
+    
+  <!-- <a class="navbar-brand" href="#">fuzzydoDB</a> -->
+  
+  
+    <div id="navbar" class="navbar-collapse navbar-inverse navbar" role="navigation">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'fuzzyapp:index' %}">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+

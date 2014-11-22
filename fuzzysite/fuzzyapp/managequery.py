@@ -6,12 +6,14 @@ class Querym():
   
   def getq(self, q, att_name, att_type, order_list):
     defq = "SELECT * FROM pokemon";
+    
     if q == None: return defq
+    
     siz = len(q);
     n = len(att_name);
     
     
-    if siz < n:
+    if siz <= n:
       return defq;
     
     query = [];

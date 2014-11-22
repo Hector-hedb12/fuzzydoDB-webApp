@@ -26,7 +26,7 @@ Owner of DHTMLgoodies.com
 ************************************************************************************************************/
 
 /* VARIABLES YOU COULD MODIFY */
-var boxSizeArray = [8];	// Array indicating how many items there is rooom for in the right column ULs
+var boxSizeArray = [6,6];	// Array indicating how many items there is rooom for in the right column ULs
 
 
 var verticalSpaceBetweenListItems = 3;	// Pixels space between one <li> and next
@@ -159,7 +159,7 @@ function moveDragContent(e)
 	dragContentObj.style.left = e.clientX + sl + 'px';
 	dragContentObj.style.top = e.clientY + st + 'px';
 
-	if(mouseoverObj)mouseoverObj.className='';
+	if(mouseoverObj)mouseoverObj.className='dragbox panel panel-default';
 	destinationObj = false;
 	dragDropIndicator.style.display='none';
 	if(indicateDestinationBox)indicateDestinationBox.style.display='none';
@@ -230,7 +230,7 @@ function moveDragContent(e)
 
 				if(!destinationObj)destinationObj = ulPositionArray[no]['obj'];
 				mouseoverObj = ulPositionArray[no]['obj'].parentNode;
-				mouseoverObj.className='mouseover';
+				mouseoverObj.className='dragbox panel panel-default mouseover';
 				return;
 			}
 		}
@@ -263,7 +263,7 @@ function dragDropEnd(e)	{
 			}else{
 				destinationObj.parentNode.insertBefore(contentToBeDragged,destinationObj);
 			}
-			mouseoverObj.className='';
+			mouseoverObj.className='dragbox panel panel-default';
 			destinationObj = false;
 			dragDropIndicator.style.display='none';
 			if(indicateDestinationBox){
