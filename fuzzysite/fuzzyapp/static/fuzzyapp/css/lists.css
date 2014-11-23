@@ -42,8 +42,8 @@ body{
 #dragDropContainer li,#dragContent li,li#indicateDestination{	/* Movable items, i.e. <LI> */
 	list-style-type:none;
 	height:25px;
-	background-color:#fff;
-	border:1px solid #000;
+	background-color:#eee;
+	
 	padding-left: 3px;
 	margin-bottom:2px;
 	cursor:pointer;
@@ -90,8 +90,8 @@ div#mainContainer{	/* Right column DIV */
 #mainContainer div ul{
 	/*margin-left:10px;*/
 }
-
-#mainContainer div p{	/* Heading above small boxes */
+/*
+#mainContainer div p{	 Heading above small boxes 
 	margin:0px;
 	padding:0px;
 	padding-left:12px;
@@ -99,8 +99,8 @@ div#mainContainer{	/* Right column DIV */
 	background-color:#317082;
 	color:#FFF;
 	margin-bottom:0px;
-	font-size:16px; /*0.9em*/
-}
+	font-size:16px; 
+}*/
 
 #mainContainer ul{	/* Small box in right column ,i.e <ul> */
 	/*width:152px;
@@ -139,6 +139,7 @@ div#mainContainer{	/* Right column DIV */
 
 #divhidden{
 	display:none;
+	
 }
 #divshow{
 	display:block;

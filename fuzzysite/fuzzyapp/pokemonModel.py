@@ -155,7 +155,7 @@ class Pokemon(object):
   att_list = ["Codigo","Nombre","Tipo", "Grupo", "Region","Color"];
   att_type = [0,0,1,1,0,1]; # 0->normal 1->t3o5
   
-  table_names = ["Tipo Pokemon Tipo 3", "Grupo Pokemon Tipo 3", "Color Pokemon Tipo 5"];
+  table_names = ["Tipo", "Grupo", "Color"];
   
   
   l1 = ["Tipo hada", "Tipo dragon", "Tipo lucha", "Tipo siniestro", "Tipo psiquico", "Tipo volador", "Tipo hielo", "Tipo normal", "Tipo bicho", "Tipo veneno", "Tipo acero", "Tipo fantasma", "Tipo planta", "Tipo agua", "Tipo fuego", "Tipo electrico", "Tipo roca", "Tipo tierra"]

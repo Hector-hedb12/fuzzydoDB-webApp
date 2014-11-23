@@ -43,8 +43,10 @@
       
       {% for id,no,li in starting_list %}
 	      if(box1_contain('{{id}}')){
-		      document.getElementById("dit{{id}}").style.display = "block";  //.className = "divshow";
+		      document.getElementById("dit{{id}}").style.display = "block";
+		      document.getElementById("dit{{id}}").style.visibility = "visible";  //.className = "divshow";
 	      }else{
+	        document.getElementById("dit{{id}}").style.display = "hidden";
 		      document.getElementById("dit{{id}}").style.display = "none";//className = "divhidden";
 	      }
 	    {% endfor %}
@@ -96,6 +98,15 @@
     
     <div class="container theme-showcase" role="main">
     
+    <div class="row row-offcanvas row-offcanvas-right">
+
+    <div class="col-xs-12 col-sm-9">
+    
+    <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+    
+    
         <div class="well">
         
           <div class="page-header">
@@ -122,13 +133,18 @@
         </div>       
         
         
-<div id="sortingdiv"  class="panel panel-default">
+<div id="sortingdiv"  class="panel panel-primary">
 
 <div class="panel-heading">
 
-    <h3 class="panel-title"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp; Query Settings</h3>
+    <h3 class="panel-title"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp; Query Sort Settings</h3>
 
 </div>
+
+<div class="panel-body" >
+  Drag the columns to the right box for sorting by the elements you pick:
+</div>
+
 
 <div id="dragDropContainer" class="panel-body">
 	
@@ -168,12 +184,21 @@
 		</div>
 		
 		
-		<div id="divsortt5" >
 		
+		<div id="divsortt5" style="margin-left:20px;">
+		<div  class=" panel panel-info" style="width:300px;" >
+		   <div class="panel-heading" style="width:100%;" >Query type 3 and 5 settings.</div>
+		   
+		   
+		   
+		   
+<div id="dragDropContainer" class="panel-body" style="width:100%; padding-top:5px;">
+<p>You must specify the starting from element for the types 3 and 5.</p>   
+	
+	<div style="height:150px;">		   
 		{% for id,no,li in starting_list %}
-		<div id="dit{{id}}" class="divhidden panel panel-primary" style="width:300px" >
-		   <div class="panel-heading" style="width:300px">{{no}}</div>
-			  <label>Starting From:</label>
+		   <div id="dit{{id}}" style="display:hidden; 	visibility: hidden; width:100%;">
+			  <label> {{no}} Starting From:</label>
 			   <select id="selt{{id}}" onchange="seltf(this)">
 			   {% for obj in li %}
 		        <option value="{{forloop.counter0}}" {% if forloop.first %}selected="selected"{% endif %}>{{obj}}</option>
@@ -181,16 +206,26 @@
 		     </select>
 		</div>
 		{% endfor %} 
+  </div>
+		
+		</div>
+		
+		</div>
 		
 		</div>
 		
 	</div>
+		
 	
 	
 </div>
+
+<div style="clear:both;"> </div>
+
+
 	
-
-
+	
+	
 <div id="footer">
   <form action="#result" method="get" id="qform">
 	  <input type="hidden" name="query" id="query" value="{{query}}">
@@ -221,14 +256,14 @@
         <a name="result"></a>
         
         
-   <div class="panel panel-default">
+   <div class="panel panel-primary">
   <!-- Default panel contents -->
   <div class="panel-heading">
    <h3 class="panel-title">
   <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp; Query Table
   </h3>
   </div>
-  <div class="panel-body" style="background-color:#000; color:#fff;">
+  <div class="panel-body" style="background-color:#333; color:#fff;">
 <h4>Query Used:   {{querystr}}</h4>
 </div>
 
@@ -291,9 +326,27 @@
 </div>
         
        
-
+</div> 
         
+        
+        <div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
 
+    <div class="list-group">
+        <a class="list-group-item active" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+        <a class="list-group-item" href="#">Link</a>
+    </div>
+
+</div>
+        
+</div>
     </div>
     
     <!--
