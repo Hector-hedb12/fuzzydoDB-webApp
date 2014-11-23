@@ -5,5 +5,5 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^fuzzyapp/', include('fuzzyapp.urls', namespace="fuzzyapp")),
-    url(r'^admin/'   , include(admin.site.urls)),
+    #url(r'^admin/'   , include(admin.site.urls)) , // Removed
 )

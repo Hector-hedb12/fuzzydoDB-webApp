@@ -33,4 +33,4 @@ for i in result: print i["color"]
 #################################################
 from fuzzyapp.pokemonModel import Pokemon
 result = Pokemon.objects.all()
-for i in result: print i
+for i in result: print i 
