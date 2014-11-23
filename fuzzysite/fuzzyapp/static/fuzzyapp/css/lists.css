@@ -1,7 +1,4 @@
-body{
-	font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;	/* Font to use */
-	background-color:#E2EBED;
-}
+
 
 #footer{
 
@@ -17,7 +14,7 @@ body{
 #sortingdiv{
   
   /*background-color:#333; */
-  margin-top: 20px;
+  
   margin-bottom: 20px;
 }
 
@@ -147,7 +144,7 @@ div#mainContainer{	/* Right column DIV */
 
 .but1, .but2{
   width: 50px;
-  text-align: left;
+  text-align: center;
   border: none;
   height:100%;
   float: right;
@@ -155,6 +152,7 @@ div#mainContainer{	/* Right column DIV */
 .but1{
   background-color:#333;
   color:#FFF;
+  
 }
 
 .but2{

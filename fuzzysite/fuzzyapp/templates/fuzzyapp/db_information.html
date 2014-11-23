@@ -92,43 +92,34 @@
   <body role="document">
     
     
-    {% include "fuzzyapp/header.html" %}
+    {% include "fuzzyapp/header.html" with page="none" %}
     
     
     
     <div class="container theme-showcase  total" role="main">
+   
+   <div class="row">
+        <div class="col-md-8">
+        
+       <div class="jumbotron panel panel-primary" >
+  <h1>Database: {{db_name}}</h1>
+ 
+</div>
+        
+        </div>
+        
+        {% include "fuzzyapp/db_menu.html" with page="query" %}
+        
+      </div>
+   
+   
+       
     
-        <div class="well">
-        
-          <div class="page-header">
-            <h1>{{db_name}} database</h1>
-          </div>
-          
-          <p>pokemon is a small database based on the famous videogame bearing 
-             the same name. pokemon (the DB) contains only one table (also named
-             pokemon) with the following attributes: 'codigo' (displayed as 
-             'Codigo') to represent the pokemon pokedex number, 'nombre' 
-             (displayed as 'Nombre') to indicate the pokemon name, 'tipo_1' and 
-             'tipo_2' (displayed jointly as 'Tipos) respectively specify the 
-             primary and secondary type categories of the pokemon (the last one 
-             in the case of dealing with dual-type pokemons), 'gh_1' and 'gh_2' 
-             (displayed jointly under 'Grupos) for designating egg groups 
-             ---categories that determine which pokemons are able to interbreed---, 
-             'poder' (displayed as 'Poder') to indicate the pokemon power (four 
-             numbers that denote attack, special attack, defense and special 
-             defense), 'region' (displayed as 'Region') specifies the region in 
-             which the pokemon was first seen, 'ratio' (displayed as 'Ratio') 
-             represents how easy or hard it is to capture a pokemon (depending 
-             on which of the 4 poke balls is being used) and 'color' (displayed 
-             as 'Color') specifies the pokemon's "primary" color.</p>
-        </div>       
-        
-        
 <div id="sortingdiv"  class="panel panel-primary" style="">
 
 <div class="panel-heading">
 
-    <h3 class="panel-title"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp; Query Sort Settings</h3>
+    <h3 class="panel-title"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp; Query Settings</h3>
 
 </div>
 
@@ -136,7 +127,7 @@
 <div align="center">
 <div style="width:740px;" align="left" >
 <div class="panel-body" >
-  Drag the columns to the right box for sorting by the elements you pick:
+  To sort data, drag and drop the attributes you wish to sort by from the 'Attributes' column on the right to the 'Sort by' column on the left. When sorting, attributes at the top have precedence over attributes at the bottom.
 </div>
 
 
@@ -153,7 +144,7 @@
 	<div id="mainContainer" >
 	  <div class="dragbox panel panel-default">
 	    
-	    <div class="drag-head panel-heading "  >Available columns</div>
+	    <div class="drag-head panel-heading "  >Attributes</div>
 			
 			<ul id="box2">
 				{% for a, t in att_list %}
@@ -171,7 +162,7 @@
 		</div>
 	  <div style="width:20px; padding-top:70px;text-align:center; "><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></div>
 		<div class="dragbox panel panel-default">
-			<div class="panel-heading">Sort Columns</div>
+			<div class="panel-heading">Sort by</div>
 			<ul id="box1"  >
 			  
 			</ul>
@@ -181,13 +172,13 @@
 		
 		<div id="divsortt5" style="margin-left:40px;">
 		<div  class=" panel panel-info" style="width:300px;" >
-		   <div class="panel-heading" style="width:100%;" >Query type 3 and 5 settings.</div>
+		   <div class="panel-heading" style="width:100%;" >Sorting by type 3 and 5 attributes</div>
 		   
 		   
 		   
 		   
 <div id="dragDropContainer" class="panel-body" style="width:100%; padding-top:5px;">
-<p>You must specify the starting from element for the types 3 and 5 in case you select any of those items.</p>   
+<p>When doing so, you must specify a starting from label (results will be presented in descending order with regards to the chosen element)</p>   
 	
 	<div style="height:150px;">		   
 		{% for id,no,li in starting_list %}
@@ -259,29 +250,30 @@
   </h3>
   </div>
   <div class="panel-body" style="background-color:#333; color:#fff;">
-<h4>Query Used:   {{querystr}}</h4>
+<h4><span style="color:#aaa;">Your Query:</span>   {{querystr}}</h4>
 </div>
 
   <!-- Table -->
-   <table class="table">
+   <table class="table table-center">
             <thead>
                 <tr>
-                    <th>Icon</th>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Tipos</th>
-                    <th>Grupos</th>
-                    
-                    <th>Region</th>
-                    
-                    <th>Color Percibido</th>
+                
+                <th>Icon</th>
+                
+                {% for name, type in att_list %}
+                    <th>{{name}}</th>
+                {% endfor %}    
                 </tr>
             </thead>
             
             <tbody>
                 {% for object in object_sublist %}
                     <tr class="{% cycle 'pure-table-odd' '' %}">
+                    
+                    
                         <td style="height:102px;width:125px;" align="center"><img src="{% static 'fuzzyapp/images/icons/' %}{{object.codigo}}.png"  /></td>
+                    
+                        
                         <td>{{ object.codigo           }}  </td>
                         <td>{{ object.nombre           }}  </td>
                         <td>{{ object.tipo_1           }}  </td>

@@ -151,8 +151,10 @@ class PokemonManager():
 
 class Pokemon(object):
   
+  
   att_name = ["codigo", "nombre", "tipo_1", "gh_1","region", "color_percibido"]
-  att_list = ["Codigo","Nombre","Tipo", "Grupo", "Region","Color"];
+  
+  att_list = ["Code","Name","Type", "Group", "Region","Color"];
   att_type = [0,0,1,1,0,1]; # 0->normal 1->t3o5
   
   table_names = ["Tipo", "Grupo", "Color"];

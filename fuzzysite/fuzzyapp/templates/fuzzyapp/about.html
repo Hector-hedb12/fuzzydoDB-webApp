@@ -9,19 +9,29 @@
 
   <body role="document">
 
-    {% include "fuzzyapp/header.html" with page="home" %}
+    {% include "fuzzyapp/header.html" with page="about" %}
     
     
 
     
     <div class="container theme-showcase total" role="main">
-    
-    
-    <div class="jumbotron panel panel-default" style="background-color:#fff;">
-  <h1>Welcome to fuzzydoDB!</h1>
-  <h2> &nbsp;&nbsp;a prototype for fuzzy data specification, storage and querying developed at Universidad Simón Bolívar.</h2>
-  <p> &nbsp;&nbsp;This site was designed to demonstrate functionality for Type 5 fuzzy attributes. To try out the web application run some test queries on fuzzy data select one of the avaiable databases below.</p>
-  <p><a class="btn btn-primary btn-lg" href="{% url 'fuzzyapp:about' %}" role="button">Learn more</a></p>
+
+<div class="jumbotron panel panel-default" style="background-color:#fff;">
+  
+  <h2>fuzzydoDB (Fuzzy Domains Data Bases)</h2>
+  <p> 
+  
+   is a project initiated by professors of the Computer Science and Information Technology Department  at Universidad Simón Bolívar whose development is currently undertaken by Computer Engineering students of the same institute. </p>
+  
+  <p>
+  The aim of the project is to specify, store and query databases with fuzzy attributes in the hopes it will ultimately enable the corroboration of theoretic results that have been attained in the field of study. 
+  </p>
+  
+  <p>
+  To get some insight on fuzzy data and learn more about the project head over to the fuzzydoDB website:
+  </p>
+  
+  <p><a class="" href="http://fuzzydodb.ldc.usb.ve/" role="button">fuzzydoDB web site</a></p>
 </div>
     
       <!--  <div class="well">
@@ -41,44 +51,11 @@
         </div> -->
 
     
-   <div class="panel panel-primary">
-
-      <div class="panel-heading">
-   <h2 class="panel-title">
-  <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp; Available Databases
-  </h3>
-  </div>
-  <div class="panel-body" >
-
-    <p>
-     Pick a database from the following list:
-    </p>
-      
-        <div class="col-sm-4">
-            <div class="row">        
-                {% if db_list %}
-                <div class="list-group">
-                  {% for db in db_list %}
-                  <a href="{% url 'fuzzyapp:db_information' db %}" class="list-group-item">{{ db }}</a>
-                  {% endfor %}
-                </div>
-                {% else %}
-                    <p>No Database available.</p>
-                {% endif %}
-            </div>
-        </div>
-       
-       
-       </div>
-       </div>
        {% include "fuzzyapp/footer.html" %}
        
        
        
     </div>
-    
-    
-
     
     <!--
     <div class="footer">

@@ -1,5 +1,7 @@
+
 body {
-  
+  font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;	/* Font to use */
+  background-color:#E2EBED;
   padding-bottom: 30px;
 }
 
@@ -95,5 +97,12 @@ hr {
 }
 .total{
   min-width:800px;
+}
+.table-center{
+  table-layout : fixed;
+}
+.table-center th, .table-center td{
+  
+  vertical-align:middle;
 }
 
