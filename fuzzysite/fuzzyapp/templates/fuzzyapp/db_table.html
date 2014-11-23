@@ -1,0 +1,48 @@
+ <div class="col-md-8">
+        
+ 
+ <div class="panel panel-primary">
+        <div class="panel-body" style="padding:30px;"> 
+          <h1 > Pokemon </h1>
+          <h4>is a small database based on the famous videogame bearing 
+             the same name. <i>Pokemon</i> (the DB) contains only one table (also named
+             pokemon) with the following attributes: 
+             </h4>
+            
+        <table class="table"><tr>
+        <td style="width:80px;" > - Code: </td><td>  pokedex number of the pokemon </td>
+        
+        </tr><tr>
+   <td>  - Name: </td><td> name of the pokemon</td>
+   </tr><tr>
+  <td>   - Type: </td><td> primary type category of the pokemon (Type 3 fuzzy attribute)</td>
+  </tr>
+  
+  <tr>
+   <td>  - Group:</td><td>  egg group of the pokemon, a category that determines which pokemon are able to interbreed (Type 3 fuzzy attribute)</td>
+   </tr>
+   
+   <tr>
+   <td>  - Region:</td><td>  region in which the pokémon was first seen</td>
+   </tr>
+   
+   <tr>
+  <td>   - Color: </td><td> perceived color of a pokémon (Type 5 fuzzy attribute)
+                 {value/color} where value indicates the possibility of the pokemon color being color</td>      
+         </tr>
+                  
+          </table>
+          
+          
+          {% if page != "info" %}
+          <p><a class="btn btn-primary btn-lg" href="{% url 'fuzzyapp:db_info' db_name %}" role="button">How to create this DB</a></p>
+          {% endif %}
+          
+          
+          
+         </div>
+        </div>    
+ 
+        
+        </div>
+        

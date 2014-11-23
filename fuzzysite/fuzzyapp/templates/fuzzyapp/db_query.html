@@ -99,15 +99,9 @@
     <div class="container theme-showcase  total" role="main">
    
    <div class="row">
-        <div class="col-md-8">
-        
-       <div class="jumbotron panel panel-primary" >
-  <h1>Database: {{db_name}}</h1>
- 
-</div>
-        
-        </div>
-        
+       
+       
+        {% include "fuzzyapp/db_table.html" with page="query" %}
         {% include "fuzzyapp/db_menu.html" with page="query" %}
         
       </div>

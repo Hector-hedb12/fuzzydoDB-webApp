@@ -99,10 +99,24 @@ hr {
   min-width:800px;
 }
 .table-center{
-  table-layout : fixed;
+  
 }
 .table-center th, .table-center td{
   
   vertical-align:middle;
+}
+
+.sqlcode{
+  font-size:16px;
+  background-color:#333;
+  color:#fff;
+  margin:10px;
+  padding:10px;
+  border: solid 1px #999;
+}
+.sqlcode .tag{
+  color:#A9F5BC;
+
+  
 }
 

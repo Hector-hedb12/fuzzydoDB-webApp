@@ -67,7 +67,7 @@ def db_information(request, db_name):
              'querystr':querystr
              }
   
-  return render(request, 'fuzzyapp/db_information.html', context)
+  return render(request, 'fuzzyapp/db_query.html', context)
 
 
 def db_info(request, db_name):
