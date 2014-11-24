@@ -111,10 +111,12 @@ hr {
   background-color:#333;
   color:#fff;
   margin:10px;
-  padding:10px;
+  padding:20px;
   border: solid 1px #999;
+  border-radius: 5px;
+  
 }
-.sqlcode .tag{
+ .tag{
   color:#A9F5BC;
 
   

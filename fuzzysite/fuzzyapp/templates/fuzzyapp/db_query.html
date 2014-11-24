@@ -243,8 +243,24 @@
   <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp; Query Table
   </h3>
   </div>
-  <div class="panel-body" style="background-color:#333; color:#fff;">
-<h4><span style="color:#aaa;">Your Query:</span>   {{querystr}}</h4>
+  <div class="panel-body" >
+<h4 style="color:#333;">Your Query:  </h4>
+
+<div class="sqlcode">
+  {% for obj in queryhtml %}
+  <div>
+  {% for s, t in obj %}
+    {% if t == 1 %} <span class="tag"> {% endif %}
+    
+    {{s}}
+    {% if t == 1 %} </span> {% endif %}
+    
+  {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+
+
 </div>
 
   <!-- Table -->

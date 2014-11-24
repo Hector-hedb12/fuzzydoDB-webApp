@@ -39,6 +39,7 @@ def db_information(request, db_name):
     
     
     querystr = Querym().getq(query, att_name, att_type, att_esp)
+    queryhtml = Querym().gethtml(query, att_name, att_type, att_esp)
     object_list = list( Pokemon.objects.allq(querystr) )
   else: raise Http404
   
@@ -64,7 +65,8 @@ def db_information(request, db_name):
              'starting_list':zip([2,3,5], table_names, listsn0),
              'page':page,
              'query':query,
-             'querystr':querystr
+             'querystr':querystr,
+             'queryhtml':queryhtml
              }
   
   return render(request, 'fuzzyapp/db_query.html', context)
