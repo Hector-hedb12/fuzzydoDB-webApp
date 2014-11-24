@@ -29,8 +29,9 @@
       <div class="panel panel-primary">
  <div class="panel-body">
  
- For creating the pokemon table, you have to define the type 3s for type, group and color and after the types 5 color using the color   type 3 defined.
-  
+
+We start by creating the fuzzy domains that will be used to declare fuzzy attributes by serving as their type. The extended SQL sentence for creating the
+Type 3 fuzzy domain tipo_pokemon (pokémon type) follows.
  
       <div class="sqlcode">
       <span class="tag">CREATE FUZZY DOMAIN</span> tipos_pokemon 
@@ -40,8 +41,7 @@
       <span class="tag">SIMILARITY</span> {('Tipo planta','Tipo fuego')/0.1, ('Tipo planta','Tipo agua')/0.5, ('Tipo planta','Tipo bicho')/0.7, ('Tipo planta','Tipo veneno')/0.2, ('Tipo planta','Tipo tierra')/0.9, ('Tipo fuego','Tipo electrico')/0.6, ('Tipo fuego','Tipo acero')/0.3, ('Tipo fuego','Tipo dragon')/0.8, ('Tipo fuego','Tipo hielo')/0.2, ('Tipo agua','Tipo electrico')/0.8, ('Tipo agua','Tipo tierra')/0.1, ('Tipo agua','Tipo roca')/0.3, ('Tipo agua','Tipo hielo')/0.9, ('Tipo electrico','Tipo dragon')/0.3, ('Tipo bicho','Tipo volador')/0.6, ('Tipo bicho','Tipo veneno')/0.4, ('Tipo bicho','Tipo tierra')/0.3, ('Tipo bicho','Tipo psiquico')/0.2, ('Tipo normal','Tipo lucha')/0.4, ('Tipo volador','Tipo dragon')/0.9, ('Tipo volador','Tipo fantasma')/0.7, ('Tipo volador','Tipo psiquico')/0.2, ('Tipo volador','Tipo hada')/0.8, ('Tipo lucha','Tipo roca')/0.5, ('Tipo lucha','Tipo acero')/0.6, ('Tipo lucha','Tipo psiquico')/0.3, ('Tipo veneno','Tipo siniestro')/0.7, ('Tipo tierra','Tipo roca')/0.9, ('Tipo tierra','Tipo acero')/0.1, ('Tipo acero','Tipo psiquico')/0.1, ('Tipo dragon','Tipo siniestro')/0.3, ('Tipo dragon','Tipo hada')/0.5, ('Tipo fantasma','Tipo psiquico')/0.5, ('Tipo fantasma','Tipo siniestro')/0.9, ('Tipo psiquico','Tipo siniestro')/0.3};
       </div>
     
-    
-    Creating the type 3 for Pokemon group
+    Likewise, the sentence for creating the Type 3 fuzzy domain grupo_huevo_pokemon (egg group of the pokémon).
     
     <div class="sqlcode">
  <span class="tag">CREATE FUZZY DOMAIN</span> grupos_huevo_pokemon 
@@ -52,7 +52,7 @@
     <span class="tag">SIMILARITY</span> {('Ninguno','Ditto')/1, ('Planta','Bicho')/0.7, ('Planta','Mineral')/0.5, ('Planta','Campo')/0.8, ('Bicho','Volador')/0.6, ('Bicho','Campo')/0.7, ('Volador','Hada')/0.8, ('Volador','Dragon')/0.9, ('Amorfo','Mineral')/0.3, ('Amorfo','Monstruo')/0.8, ('Mineral','Campo')/0.6, ('Agua 1','Agua 2')/0.9, ('Agua 1','Agua 3')/0.8, ('Agua 2','Agua 3')/0.9, ('Monstruo','Dragon')/0.6, ('Hada','Dragon')/0.5};
   </div>
 
-  Creating the fuzzy domain type 3 for type 5:
+Finally, the creation of the Type 3 fuzzy domain colores_pokemon (pokémon primary colors):
 
   <div class="sqlcode">
  <span class="tag">CREATE FUZZY DOMAIN</span> colores_pokemon 
@@ -62,13 +62,15 @@
    <span class="tag">SIMILARITY</span> {('Azul','Morado')/0.8, ('Azul','Verde')/0.8, ('Amarillo','Blanco')/0.2, ('Amarillo','Verde')/0.8, ('Blanco','Gris')/1, ('Blanco','Rosa')/0.7, ('Gris','Negro')/1, ('Marron','Morado')/0.3, ('Marron','Negro')/0.5, ('Morado','Rojo')/0.8, ('Rojo','Rosa')/0.7};
       </div>
 
-Creating the type 5 using the definition above of type 3:
+It is now possible to create a Type 5 fuzzy domain on top of a Type 3 fuzzy domain, which is the case for multicolores_pokemon (the perceived color of a pokémon, look at the description for the Color attribute above):
 
 <div class="sqlcode">
  <span class="tag">CREATE FUZZY DOMAIN</span> multicolores_pokemon  <span class="tag">AS POSSIBILITY DISTRIBUTION ON</span> colores_pokemon;
   </div>
   
-  After defining the types, it is possible to create the table for pokemon.
+  
+  
+It is now possible to create a table with fuzzy attributes ---as was described above---, the extended SQL sentence for the creation of the pokemon table follows:
   
       <div class="sqlcode">
       
