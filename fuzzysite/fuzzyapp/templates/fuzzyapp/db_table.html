@@ -3,22 +3,22 @@
  
  <div class="panel panel-primary">
         <div class="panel-body" style="padding:30px;"> 
-          <h1 > <i>Pokemon </i></h1>
+          <h1 > <i>Pokémon </i></h1>
            
-          <h4 style="text-indent:50px; text-align:justify;">is a small database based on the famous video game bearing the same name (Pokemon). Below is a fraction of the original database displaying selected columns from the pokemon table; elements in this table represent pokémon, a description of the selected attributes follows:
+          <h4 style="text-indent:50px; text-align:justify;">is a small database based on the famous video game bearing the same name (Pokémon). Below is a fraction of the original database displaying selected columns from the pokémon table; elements in this table represent pokémon, a description of the selected attributes follows:
              </h4>
             
         <table class="table"><tr>
-        <td style="width:80px;" > - Code: </td><td>  pokedex number of the pokemon </td>
+        <td style="width:80px;" > - Code: </td><td>  pokédex number of the pokémon </td>
         
         </tr><tr>
-   <td>  - Name: </td><td> name of the pokemon</td>
+   <td>  - Name: </td><td> name of the pokémon</td>
    </tr><tr>
-  <td>   - Type: </td><td> primary type category of the pokemon (Type 3 fuzzy attribute)</td>
+  <td>   - Type: </td><td> primary type category of the pokémon (Type 3 fuzzy attribute)</td>
   </tr>
   
   <tr>
-   <td>  - Group:</td><td>  egg group of the pokemon, a category that determines which pokemon are able to interbreed (Type 3 fuzzy attribute)</td>
+   <td>  - Group:</td><td>  egg group of the pokémon, a category that determines which pokémon are able to interbreed (Type 3 fuzzy attribute)</td>
    </tr>
    
    <tr>
@@ -27,7 +27,7 @@
    
    <tr>
   <td>   - Color: </td><td> perceived color of a pokémon (Type 5 fuzzy attribute)
-                 {<i>value</i>/<i>color</i>} where value indicates the possibility of the pokemon color being color</td>      
+                 {<i>value</i>/<i>color</i>} where value indicates the possibility of the pokémon color being color</td>      
          </tr>
                   
           </table>
@@ -37,8 +37,9 @@
           <p><a class="btn btn-primary btn-lg" href="{% url 'fuzzyapp:db_info' db_name %}" role="button">How to create this DB</a></p>
           {% endif %}
           
-          
-          
+          <p>
+          The full pokémon database can be found <a href="http://fuzzydodb.ldc.usb.ve/">here</a>. 
+          </p>
          </div>
         </div>    
  
