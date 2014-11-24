@@ -52,7 +52,7 @@ Type 3 fuzzy domain tipo_pokemon (pokémon type) follows.
     <span class="tag">SIMILARITY</span> {('Ninguno','Ditto')/1, ('Planta','Bicho')/0.7, ('Planta','Mineral')/0.5, ('Planta','Campo')/0.8, ('Bicho','Volador')/0.6, ('Bicho','Campo')/0.7, ('Volador','Hada')/0.8, ('Volador','Dragon')/0.9, ('Amorfo','Mineral')/0.3, ('Amorfo','Monstruo')/0.8, ('Mineral','Campo')/0.6, ('Agua 1','Agua 2')/0.9, ('Agua 1','Agua 3')/0.8, ('Agua 2','Agua 3')/0.9, ('Monstruo','Dragon')/0.6, ('Hada','Dragon')/0.5};
   </div>
 
-Finally, the creation of the Type 3 fuzzy domain colores_pokemon (pokémon primary colors):
+Finally, the creation of the Type 3 fuzzy domain colores_pokemon (pokémon primary colors).
 
   <div class="sqlcode">
  <span class="tag">CREATE FUZZY DOMAIN</span> colores_pokemon 
@@ -62,7 +62,7 @@ Finally, the creation of the Type 3 fuzzy domain colores_pokemon (pokémon prima
    <span class="tag">SIMILARITY</span> {('Azul','Morado')/0.8, ('Azul','Verde')/0.8, ('Amarillo','Blanco')/0.2, ('Amarillo','Verde')/0.8, ('Blanco','Gris')/1, ('Blanco','Rosa')/0.7, ('Gris','Negro')/1, ('Marron','Morado')/0.3, ('Marron','Negro')/0.5, ('Morado','Rojo')/0.8, ('Rojo','Rosa')/0.7};
       </div>
 
-It is now possible to create a Type 5 fuzzy domain on top of a Type 3 fuzzy domain, which is the case for multicolores_pokemon (the perceived color of a pokémon, look at the description for the Color attribute above):
+It is now possible to create a Type 5 fuzzy domain on top of a Type 3 fuzzy domain, which is the case for multicolores_pokemon (the perceived color of a pokémon, look at the description for the Color attribute above).
 
 <div class="sqlcode">
  <span class="tag">CREATE FUZZY DOMAIN</span> multicolores_pokemon  <span class="tag">AS POSSIBILITY DISTRIBUTION ON</span> colores_pokemon;
@@ -70,7 +70,7 @@ It is now possible to create a Type 5 fuzzy domain on top of a Type 3 fuzzy doma
   
   
   
-It is now possible to create a table with fuzzy attributes ---as was described above---, the extended SQL sentence for the creation of the pokemon table follows:
+It is now possible to create a table with fuzzy attributes ---as was described above---, the extended SQL sentence for the creation of the pokemon table follows.
   
       <div class="sqlcode">
       
