@@ -6,22 +6,7 @@
 
     
     <script>
-      
-      /*
-      return true if contains
-      */
-      function box1_contain(elem){
-        var uls = document.getElementById("box1");
-	      var lis = uls.getElementsByTagName('LI');
-	    
-	      for(var no2=0;no2<lis.length;no2++){
-		      if(lis[no2].id == elem) return true;
-	      }
-	      
-	      return false;
-      }	
-      
-      
+    
       /*
        * Functions for settings normal elements
        */
@@ -64,18 +49,18 @@
 		      document.getElementById("dit{{id}}").style.display = "none";//className = "divhidden";
 	      }
 	    {% endfor %}
-
       }
       
       function saveDragDropNodes(){
 	      var saveString = "";
-	      var uls = document.getElementById("box1");
-	      
-	      var lis = uls.getElementsByTagName('LI');
-	      for(var no2=0;no2<lis.length;no2++){
-		      saveString = saveString + itc(lis[no2].id);
+	      var uls = dragDropTopContainer.getElementsByTagName('UL');
+	      for(var no=0;no<uls.length;no++){	// LOoping through all <ul>
+		      if(uls[no].id != 'box1') continue;
+		      var lis = uls[no].getElementsByTagName('LI');
+		      for(var no2=0;no2<lis.length;no2++){
+			      saveString = saveString + itc(lis[no2].id);
+		      }
 	      }
-	      
 	      
 	      
 	      {% for a, t in att_list %}
@@ -103,16 +88,10 @@
     </script>
   </head>
 
-
-
-
   <body role="document">
     
     
     {% include "fuzzyapp/header.html" with page="none" %}
-    
-    
-    
     
     
     
@@ -145,9 +124,79 @@
 </div>
 
 
-
-{% include "fuzzyapp/db_drag.html" %}
-
+<div id="dragDropContainer" class="panel-body">
+	
+	
+	
+	<div id="listOfItems" style="display:none">
+		<div>
+		    <ul id="allItems"></ul>
+		</div>
+	</div>
+	
+	<div id="mainContainer" >
+	  <div class="dragbox panel panel-default">
+	    
+	    <div class="drag-head panel-heading "  >Attributes</div>
+			
+			<ul id="box2">
+				{% for a, t in att_list %}
+			    <li id="{{forloop.counter0}}" class="lic{{t}}">
+			     {{a}}
+			    {% if t == 0 %}
+			    
+			    <button  id="b{{forloop.counter0}}" class="but2" onmousedown="fb(this);">ASC</button>
+			    
+			    {% endif %}
+			    </li>
+		    {% endfor %} 
+			</ul>
+			
+		</div>
+	  <div style="width:20px; padding-top:70px;text-align:center; "><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></div>
+		<div class="dragbox panel panel-default">
+			<div class="panel-heading">Sort by</div>
+			<ul id="box1"  >
+			  
+			</ul>
+		</div>
+		
+		
+		
+		<div id="divsortt5" style="margin-left:40px;">
+		<div  class=" panel panel-info" style="width:300px;" >
+		   <div class="panel-heading" style="width:100%;" >Sorting by type 3 and 5 attributes</div>
+		   
+		   
+		   
+		   
+<div id="dragDropContainer" class="panel-body" style="width:100%; padding-top:5px;">
+<p>When doing so, you must specify a starting from label (results will be presented in descending order with regards to the chosen element)</p>   
+	
+	<div style="height:150px;">		   
+		{% for id,no,li in starting_list %}
+		   <div id="dit{{id}}" style="display:hidden; 	visibility: hidden; width:100%;">
+			  <label> {{no}} Starting From:</label>
+			   <select id="selt{{id}}" onchange="seltf(this)">
+			   {% for obj in li %}
+		        <option value="{{forloop.counter0}}" {% if forloop.first %}selected="selected"{% endif %}>{{obj}}</option>
+		     {% endfor %}
+		     </select>
+		</div>
+		{% endfor %} 
+  </div>
+		
+		</div>
+		
+		</div>
+		
+		</div>
+		
+	</div>
+		
+	
+	
+</div>
 
 <div style="clear:both;"> </div>
 
@@ -168,8 +217,11 @@
 	  
 	  <input type="button" class="btn btn-primary navbar-btn" onclick="saveDragDropNodes()" value="Query"></form>
 </div>
+<ul id="dragContent"></ul>
+<div id="dragDropIndicator"><img src="{% static 'fuzzyapp/images/insert.gif' %}"></div>
+<div class="container theme-showcase" role="main">
 
-
+</div> 
 </div>
 </div>
     
@@ -286,23 +338,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!--    -->
-    <script src="{% static 'fuzzyapp/sortable/jquery.min.js' %}"></script>
-    <script src="{% static 'fuzzyapp/sortable/jquery.sortable.js' %}"></script>
-     <script>
-		$(function() {
-			$('.sortable').sortable();
-			$('.handles').sortable({
-				handle: 'span'
-			});
-			$('.connected').sortable({
-				connectWith: '.connected'
-			});
-			$('.exclude').sortable({
-				items: ':not(.disabled)'
-			});
-		});
-	</script>
-    
+    <script src="{% static 'fuzzyapp/js/jquery.min.js' %}"></script>
     <script src="{% static 'fuzzyapp/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'fuzzyapp/js/docs.min.js' %}"></script>
     <script src="{% static 'fuzzyapp/js/ie10-viewport-bug-workaround.js' %}"></script>

@@ -123,20 +123,7 @@ function timerDrag()
 		dragContentObj.appendChild(contentToBeDragged);
 	}
 }
-/*
-return true if contains
-*/
-function box1_contain(elem){
-	var uls = dragDropTopContainer.getElementsByTagName('UL');
-	for(var no=0;no<uls.length;no++){	// LOoping through all <ul>
-		if(uls[no].id != 'box1') continue;
-		var lis = uls[no].getElementsByTagName('LI');
-		for(var no2=0;no2<lis.length;no2++){
-			if(lis[no2].id == elem) return true;
-		}
-	}
-	return false;
-}	
+
 
 
 function moveDragContent(e)

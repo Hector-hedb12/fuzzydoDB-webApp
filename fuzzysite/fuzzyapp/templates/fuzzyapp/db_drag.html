@@ -1,0 +1,142 @@
+
+
+<style>
+		
+		.dragbox{
+		  width:170px;
+		  float:left;
+		}
+		
+		.dragbox ul li{
+		  list-style: none;
+		  height:22px;
+		  color:#333;
+		  margin-bottom:2px;
+		  width:100%;
+		  background-color:#eee;
+		  padding-left:10px;
+		  
+		  
+			cursor: move;
+		}
+		.dragbox ul{
+		  height:160px;
+		  padding:0px;
+		  margin-top:10px;
+		  margin-bottom:10px;
+		  width:100%;
+		}
+		.dragbox-mid{
+		  width:20px; 
+		  padding-top:70px;
+		  text-align:center;
+		  float:left; 
+		  margin-left:5px;
+		  margin-right:5px;
+		}
+		
+		
+		.dragbox ul li span{
+			padding-right:10px;
+			
+		}
+		
+		li.sortable-placeholder {
+			border: 1px dashed #999;
+			
+		}
+		.list-div{
+		   width:100%;
+		   padding:2px;
+		   margin:2px;
+		   background-color:#f9f9f9;
+		   padding-left:10px;
+		   border-radius:3px;
+		}
+		.list-div select{
+		   
+		   margin-left:10px;
+		   width:150px;
+		   
+		}
+		
+	</style>
+
+
+
+<div id="dragDropContainer" class="panel-body">
+	
+	
+	
+	<div id="listOfItems" style="display:none">
+		<div>
+		    <ul id="allItems"></ul>
+		</div>
+	</div>
+	
+	<div id="mainContainer" >
+	  <div class="dragbox panel panel-default">
+	    
+	    <div class="drag-head panel-heading "  >Attributes</div>
+			
+			<ul id="box2" class="connected " >
+			  
+				{% for a, t in att_list %}
+				  
+			    <li id="{{forloop.counter0}}" class="lic{{t}}" ondragend="javascript:sh_st5();">
+			     <span >::</span>{{a}}
+			    {% if t == 0 %}
+			    <button  id="b{{forloop.counter0}}" class="but2" onclick="fb(this);">ASC</button>
+			    {% endif %}
+			    </li>
+		    {% endfor %} 
+			</ul>
+			
+		</div>
+	  
+	  <div class="dragbox-mid"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></div>
+	  
+	  
+		<div class="dragbox panel panel-default">
+			<div class="panel-heading">Sort by</div>
+			<ul id="box1" class="connected" >
+			  
+			</ul>
+		</div>
+		
+		
+		
+		<div id="divsortt5" style="margin-left:40px; float:left;">
+		<div  class=" panel panel-info" style="width:300px;" >
+		   <div class="panel-heading" style="width:100%;" >Sorting by type 3 and 5 attributes</div>
+		   
+		   
+		   
+		   
+<div id="dragDropContainer" class="panel-body" style="width:100%; padding-top:5px;">
+<p>When doing so, you must specify a starting from label (results will be presented in descending order with regards to the chosen element)</p>   
+	
+	<div style="height:165px;">		   
+		{% for id,no,li in starting_list %}
+		   <div id="dit{{id}}" style="display:hidden; 	visibility: hidden;" class="list-div">
+			  <label> {{no}} Starting From:</label> </br>
+			   <select id="selt{{id}}" onchange="seltf(this)">
+			   {% for obj in li %}
+		        <option value="{{forloop.counter0}}" {% if forloop.first %}selected="selected"{% endif %}>{{obj}}</option>
+		     {% endfor %}
+		     </select>
+		</div>
+		{% endfor %} 
+  </div>
+		
+		</div>
+		
+		</div>
+		
+		</div>
+		
+	</div>
+		
+	
+	
+</div>
